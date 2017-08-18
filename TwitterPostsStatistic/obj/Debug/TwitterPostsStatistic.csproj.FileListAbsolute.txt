@@ -1,0 +1,9 @@
+c:\users\a.metlikin\documents\visual studio 2017\Projects\TwitterPostsStatistic\TwitterPostsStatistic\obj\Debug\TwitterPostsStatistic.csprojResolveAssemblyReference.cache
+c:\users\a.metlikin\documents\visual studio 2017\Projects\TwitterPostsStatistic\TwitterPostsStatistic\bin\Debug\TwitterPostsStatistic.exe.config
+c:\users\a.metlikin\documents\visual studio 2017\Projects\TwitterPostsStatistic\TwitterPostsStatistic\bin\Debug\TwitterPostsStatistic.exe
+c:\users\a.metlikin\documents\visual studio 2017\Projects\TwitterPostsStatistic\TwitterPostsStatistic\bin\Debug\TwitterPostsStatistic.pdb
+c:\users\a.metlikin\documents\visual studio 2017\Projects\TwitterPostsStatistic\TwitterPostsStatistic\bin\Debug\OAuth.dll
+c:\users\a.metlikin\documents\visual studio 2017\Projects\TwitterPostsStatistic\TwitterPostsStatistic\bin\Debug\OAuth.pdb
+c:\users\a.metlikin\documents\visual studio 2017\Projects\TwitterPostsStatistic\TwitterPostsStatistic\bin\Debug\OAuth.xml
+c:\users\a.metlikin\documents\visual studio 2017\Projects\TwitterPostsStatistic\TwitterPostsStatistic\obj\Debug\TwitterPostsStatistic.exe
+c:\users\a.metlikin\documents\visual studio 2017\Projects\TwitterPostsStatistic\TwitterPostsStatistic\obj\Debug\TwitterPostsStatistic.pdb
