@@ -17,26 +17,16 @@ namespace TwitterPostsStatistic.Entities
               "oauthToken=\"{4}\", oauth_signature=\"{5}\", " +
               "oauth_version=\"{6}\"";
 
-        private readonly string consumerKey;
-        private readonly string consumerSecret;
+        public string ConsumerKey { get; set; }
+        public string ConsumerSecret { get; set; }
 
-        private string oauthToken;
-        private string oauthTokenSecret;
-
-        public string OauthToken
-        {
-            set { oauthToken = value; }
-        }
-
-        public string OauthTokenSecret
-        {
-            set { oauthTokenSecret = value; }
-        }
-
+        public string OauthToken { get; set; }
+        public string OauthTokenSecret { get; set; }
+        
         public TwitterApi(string consumerKey, string consumerSecret)
         {
-            this.consumerKey = consumerKey;
-            this.consumerSecret = consumerSecret;
+            ConsumerKey = consumerKey;
+            ConsumerSecret = consumerSecret;
         }
 
         public void SendGetRequest()
@@ -44,7 +34,7 @@ namespace TwitterPostsStatistic.Entities
             Uri uri = new Uri("http://api.twitter.com/oauth/request_token");
         }
 
-        public void SendPostRequest(string resource_url, string post_data, string auth_header)
+        public string SendPostRequest(string resource_url, string post_data, string auth_header)
         {
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(resource_url);
             request.Headers.Add("Authorization", auth_header);
@@ -52,6 +42,7 @@ namespace TwitterPostsStatistic.Entities
             request.ContentType = "application/x-www-form-urlencoded";
             request.ContentLength = post_data.Length;
 
+            WebResponse response = null;
             using (Stream stream = request.GetRequestStream())
             {
                 byte[] content = Encoding.ASCII.GetBytes(post_data);
@@ -59,18 +50,14 @@ namespace TwitterPostsStatistic.Entities
             }
             try
             {
-                WebResponse response = request.GetResponse();
+                response = request.GetResponse();
                 Console.WriteLine(response.ToString());
+                return response;
             }
             catch (WebException e)
             {
-                Console.WriteLine(e.Status.ToString());
+                return e.Status.ToString();
             }
-        }
-
-        public void SendPostRequest()
-        {
-            throw new NotImplementedException();
         }
 
         public void SendDirectMessage(string user, string text)
@@ -103,19 +90,19 @@ namespace TwitterPostsStatistic.Entities
                 "&oauth_timestamp={3}&oauthToken={4}&oauth_version={5}&" + post_data;
 
             var baseString = string.Format(baseFormat,
-                                        consumerKey,
+                                        ConsumerKey,
                                         oauth_nonce,
                                         oauth_signature_method,
                                         oauth_timestamp,
-                                        oauthToken,
+                                        OauthToken,
                                         oauth_version
                                         );
 
             baseString = string.Concat("POST&", Uri.EscapeDataString(resource_url),
                          "&", Uri.EscapeDataString(baseString));
 
-            var compositeKey = string.Concat(Uri.EscapeDataString(consumerSecret),
-                        "&", Uri.EscapeDataString(oauthTokenSecret));
+            var compositeKey = string.Concat(Uri.EscapeDataString(ConsumerSecret),
+                        "&", Uri.EscapeDataString(OauthTokenSecret));
 
             string oauth_signature;
             using (HMACSHA1 hasher = new HMACSHA1(Encoding.ASCII.GetBytes(compositeKey)))
@@ -127,8 +114,8 @@ namespace TwitterPostsStatistic.Entities
                                     Uri.EscapeDataString(oauth_nonce),
                                     Uri.EscapeDataString(oauth_signature_method),
                                     Uri.EscapeDataString(oauth_timestamp),
-                                    Uri.EscapeDataString(consumerKey),
-                                    Uri.EscapeDataString(oauthToken),
+                                    Uri.EscapeDataString(ConsumerKey),
+                                    Uri.EscapeDataString(OauthToken),
                                     Uri.EscapeDataString(oauth_signature),
                                     Uri.EscapeDataString(oauth_version)
                             );
@@ -151,5 +138,18 @@ namespace TwitterPostsStatistic.Entities
 
             return GetBaseString(post_data, resource_url);
         }
+
+        public void GetAuthToken()
+        {
+            request_url = "http://api.twitter.com/oauth/authorize?oauth_token=" + oauth_token;
+            Console.WriteLine("Req: " + request_url);
+            Console.WriteLine("--------------------------------------------------------");
+            System.Diagnostics.Process.Start(request_url); // Передаём ссылку на страницу браузеру по умолчанию и ждём пока пользователь введёт PIN-код
+            Console.Write("Enter PIN: ");
+            string oauth_verifier = Console.ReadLine(); // oauth_verifier — это полученный нами PIN-код.
+            Console.WriteLine("--------------------------------------------------------");
+        }
+
+        
     }
 }

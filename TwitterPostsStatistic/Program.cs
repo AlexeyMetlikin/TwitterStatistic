@@ -15,7 +15,7 @@ namespace TwitterPostsStatistic
         {
             ReadConsumersKeys();
             TwitterStatisctic statistic = new TwitterStatisctic(new TwitterApi(consumerKey, consumerSecret));
-            statistic.StartApp();
+            MainFunc(statistic);
         }
 
         private static void ReadConsumersKeys()
@@ -30,6 +30,29 @@ namespace TwitterPostsStatistic
             catch
             {
                 throw new Exception("Отсутствует файл настроек settings.ini либо в файле настроек отсутствуют ключи - 'Consumer Key' и 'Consumer Secret'");
+            }
+        }
+
+        private static void MainFunc(TwitterStatisctic statisctic)
+        {
+            Console.WriteLine("1. Получить статистику частотности");
+            Console.WriteLine("2. Напечатать твит");
+            Console.WriteLine("3. Exit");
+            int control;
+            int.TryParse(Console.ReadLine(), out control);
+            while (control != 3)
+            {
+                switch (control)
+                {
+                    case 1:
+                        break;
+                    case 2:
+                        break;
+                    case 3:
+                        break;
+                    default:
+                        break;
+                }
             }
         }
     }

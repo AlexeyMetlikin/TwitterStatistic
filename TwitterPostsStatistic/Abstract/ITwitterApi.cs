@@ -8,7 +8,10 @@ namespace TwitterPostsStatistic.Abstract
 {
     public interface ITwitterApi : IApi
     {
-        string OauthToken { set; }
-        string OauthTokenSecret { set; }
+        string ConsumerKey { get; set; }
+        string ConsumerSecret { get; set; }
+        string OauthToken { get; set; }
+        string OauthTokenSecret { get; set; }
     }
 }
+

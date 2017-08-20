@@ -7,3 +7,5 @@ c:\users\a.metlikin\documents\visual studio 2017\Projects\TwitterPostsStatistic\
 c:\users\a.metlikin\documents\visual studio 2017\Projects\TwitterPostsStatistic\TwitterPostsStatistic\bin\Debug\OAuth.xml
 c:\users\a.metlikin\documents\visual studio 2017\Projects\TwitterPostsStatistic\TwitterPostsStatistic\obj\Debug\TwitterPostsStatistic.exe
 c:\users\a.metlikin\documents\visual studio 2017\Projects\TwitterPostsStatistic\TwitterPostsStatistic\obj\Debug\TwitterPostsStatistic.pdb
+C:\Users\Ulyana\Documents\Visual Studio 2017\Projects\TwitterStatistic\TwitterPostsStatistic\obj\Debug\TwitterPostsStatistic.csprojResolveAssemblyReference.cache
+C:\Users\Ulyana\Documents\Visual Studio 2017\Projects\TwitterStatistic\TwitterPostsStatistic\obj\Debug\TwitterPostsStatistic.csproj.CoreCompileInputs.cache

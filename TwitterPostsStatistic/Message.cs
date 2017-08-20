@@ -20,13 +20,7 @@ namespace TwitterPostsStatistic
 
 
         /*2 
-         request_url = "http://api.twitter.com/oauth/authorize?oauth_token="+ oauth_token;
-Console.WriteLine("Req: " + request_url);
-Console.WriteLine("--------------------------------------------------------");
-System.Diagnostics.Process.Start(request_url); // Передаём ссылку на страницу браузеру по умолчанию и ждём пока пользователь введёт PIN-код
-Console.Write("Enter PIN: ");
-string oauth_verifier = Console.ReadLine(); // oauth_verifier — это полученный нами PIN-код.
-Console.WriteLine("--------------------------------------------------------");
+         
          */
 
         /*3

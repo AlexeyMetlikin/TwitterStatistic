@@ -8,8 +8,6 @@ namespace TwitterPostsStatistic.Abstract
 {
     public interface IApi
     {
-        void SendPostRequest();
-
-        void SendGetRequest();
+        void SendPostRequest(string resource_url, string post_data, string auth_header);
     }
 }
