@@ -9,3 +9,12 @@ c:\users\a.metlikin\documents\visual studio 2017\Projects\TwitterPostsStatistic\
 c:\users\a.metlikin\documents\visual studio 2017\Projects\TwitterPostsStatistic\TwitterPostsStatistic\obj\Debug\TwitterPostsStatistic.pdb
 C:\Users\Ulyana\Documents\Visual Studio 2017\Projects\TwitterStatistic\TwitterPostsStatistic\obj\Debug\TwitterPostsStatistic.csprojResolveAssemblyReference.cache
 C:\Users\Ulyana\Documents\Visual Studio 2017\Projects\TwitterStatistic\TwitterPostsStatistic\obj\Debug\TwitterPostsStatistic.csproj.CoreCompileInputs.cache
+C:\Projects\TwitterStatistic\TwitterPostsStatistic\bin\Debug\TwitterPostsStatistic.exe.config
+C:\Projects\TwitterStatistic\TwitterPostsStatistic\bin\Debug\TwitterPostsStatistic.exe
+C:\Projects\TwitterStatistic\TwitterPostsStatistic\bin\Debug\TwitterPostsStatistic.pdb
+C:\Projects\TwitterStatistic\TwitterPostsStatistic\bin\Debug\OAuth.dll
+C:\Projects\TwitterStatistic\TwitterPostsStatistic\bin\Debug\OAuth.pdb
+C:\Projects\TwitterStatistic\TwitterPostsStatistic\bin\Debug\OAuth.xml
+C:\Projects\TwitterStatistic\TwitterPostsStatistic\obj\Debug\TwitterPostsStatistic.csprojResolveAssemblyReference.cache
+C:\Projects\TwitterStatistic\TwitterPostsStatistic\obj\Debug\TwitterPostsStatistic.exe
+C:\Projects\TwitterStatistic\TwitterPostsStatistic\obj\Debug\TwitterPostsStatistic.pdb

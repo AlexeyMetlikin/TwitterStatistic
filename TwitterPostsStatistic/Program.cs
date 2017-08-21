@@ -6,31 +6,10 @@ namespace TwitterPostsStatistic
 {
     class Program
     {
-        private static IniFile config = new IniFile("settings.ini");
-
-        private static string consumerKey;
-        private static string consumerSecret;
-
         static void Main(string[] args)
         {
-            ReadConsumersKeys();
-            TwitterStatisctic statistic = new TwitterStatisctic(new TwitterApi(consumerKey, consumerSecret));
+            TwitterStatisctic statistic = new TwitterStatisctic(new TwitterApi());
             MainFunc(statistic);
-        }
-
-        private static void ReadConsumersKeys()
-        {
-            consumerKey = null;
-            consumerSecret = null;
-            try
-            {
-                consumerKey = config.ReadINI("API-Key", "ConsumerKey");
-                consumerSecret = config.ReadINI("API-Key", "ConsumerSecret");
-            }
-            catch
-            {
-                throw new Exception("Отсутствует файл настроек settings.ini либо в файле настроек отсутствуют ключи - 'Consumer Key' и 'Consumer Secret'");
-            }
         }
 
         private static void MainFunc(TwitterStatisctic statisctic)
@@ -45,6 +24,7 @@ namespace TwitterPostsStatistic
                 switch (control)
                 {
                     case 1:
+                        statisctic.GetUserPIN();
                         break;
                     case 2:
                         break;

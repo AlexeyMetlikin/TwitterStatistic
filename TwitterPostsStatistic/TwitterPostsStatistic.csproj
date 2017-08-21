@@ -47,9 +47,7 @@
   <ItemGroup>
     <Compile Include="Abstract\IApi.cs" />
     <Compile Include="Abstract\ITwitterApi.cs" />
-    <Compile Include="Abstract\IMessage.cs" />
     <Compile Include="Message.cs" />
-    <Compile Include="Entities\TwitMessage.cs" />
     <Compile Include="Entities\TwitterApi.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

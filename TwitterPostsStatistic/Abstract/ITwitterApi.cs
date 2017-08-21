@@ -12,6 +12,8 @@ namespace TwitterPostsStatistic.Abstract
         string ConsumerSecret { get; set; }
         string OauthToken { get; set; }
         string OauthTokenSecret { get; set; }
+
+        void SendGetRequest();
     }
 }
 
