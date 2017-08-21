@@ -18,3 +18,5 @@ C:\Projects\TwitterStatistic\TwitterPostsStatistic\bin\Debug\OAuth.xml
 C:\Projects\TwitterStatistic\TwitterPostsStatistic\obj\Debug\TwitterPostsStatistic.csprojResolveAssemblyReference.cache
 C:\Projects\TwitterStatistic\TwitterPostsStatistic\obj\Debug\TwitterPostsStatistic.exe
 C:\Projects\TwitterStatistic\TwitterPostsStatistic\obj\Debug\TwitterPostsStatistic.pdb
+C:\Projects\TwitterStatistic\TwitterPostsStatistic\bin\Debug\Newtonsoft.Json.dll
+C:\Projects\TwitterStatistic\TwitterPostsStatistic\bin\Debug\Newtonsoft.Json.xml

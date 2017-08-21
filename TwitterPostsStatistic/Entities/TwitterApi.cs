@@ -3,7 +3,9 @@ using System.Net;
 using System.Security.Cryptography;
 using System.Text;
 using TwitterPostsStatistic.Abstract;
-using OAuth;
+using Newtonsoft.Json;
+using System.Net.Http;
+using System.Text.RegularExpressions;
 
 namespace TwitterPostsStatistic.Entities
 {
@@ -17,74 +19,33 @@ namespace TwitterPostsStatistic.Entities
         
         public TwitterApi()
         {
-            ConsumerKey = "MUixq6JoFMljSJvMngSjfXVy7";
-            ConsumerSecret = "rtK3bMFj4Vazd9dVp1qmsT9LoVnQ16WCm17bQvHEzhDz7tdNiM";
-            OauthToken = "898408814252236800-taHgdPecPXVC7yKyOoKW6xieJ4jhvbE";
-            OauthTokenSecret = "kezqBUJU6HMxVMfW55e1CazRASUlismsSWX9sMdhiSoJV";
+            ConsumerKey = "Iy5egv3JqJTxFu6DQVrMZEkLc";
+            ConsumerSecret = "5JxVltixFGUlni9Doy4d2YatOOdt4QuLCgLJfaTG05g1OFsY4v";
         }
 
-        public void SendGetRequest()
+        public async void SendGetRequestAsync()
         {
-            string resource_url = "https://api.twitter.com/oauth2/token?grant_type=client_credentials";
+            var httpClient = new HttpClient();
+            var request = new HttpRequestMessage(HttpMethod.Post, "	https://api.twitter.com/oauth/request_token");
 
-            var oauth_version = "1.0";
-            var oauth_signature_method = "HMAC-SHA1";
-            var oauth_nonce = Convert.ToBase64String(new ASCIIEncoding().GetBytes(DateTime.Now.Ticks.ToString()));
-            var timeSpan = DateTime.UtcNow - new DateTime(1900, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
-            var oauth_timestamp = Convert.ToInt64(timeSpan.TotalSeconds).ToString();
+            string oauth_consumer_key = "Iy5egv3JqJTxFu6DQVrMZEkLc";
+            string oauth_consumer_secret = "5JxVltixFGUlni9Doy4d2YatOOdt4QuLCgLJfaTG05g1OFsY4v";
 
-            var baseFormat = "oauth_consumer_key={0}&oauth_nonce={1}&oauth_signature_method={2}" +
-                             "&oauth_timestamp={3}&oauthToken={4}&oauth_version={5}";
+            string url = "https://api.twitter.com/oauth2/token?oauth_consumer_key=" + oauth_consumer_key + "&oauth_consumer_secret=" + oauth_consumer_secret;
 
-            var baseString = string.Format(baseFormat,
-                                           ConsumerKey,
-                                           oauth_nonce,
-                                           oauth_signature_method,
-                                           oauth_timestamp,
-                                           OauthToken,
-                                           oauth_version);
+            var customerInfo = Convert.ToBase64String(new UTF8Encoding()
+                                .GetBytes(oauth_consumer_key + ":" + oauth_consumer_secret));
 
-            baseString = string.Concat("POST&", Uri.EscapeDataString(resource_url),
-                         "&", Uri.EscapeDataString(baseString));
+            // Add authorization to headers
+            request.Headers.Add("Authorization", "Basic " + customerInfo);
+            request.Content = new StringContent("grant_type=client_credentials", Encoding.UTF8,
+                                                                "application/x-www-form-urlencoded");
 
-            var compositeKey = string.Concat(Uri.EscapeDataString(ConsumerKey), ":", Uri.EscapeDataString(ConsumerSecret));
+            HttpResponseMessage response = httpClient.SendAsync(request).Result;
 
-            string oauth_signature;
-            using (HMACSHA1 hasher = new HMACSHA1(Encoding.ASCII.GetBytes(compositeKey)))
-            {
-                oauth_signature = Convert.ToBase64String(hasher.ComputeHash(Encoding.ASCII.GetBytes(baseString)));
-            }
-
-            var headerFormat = "OAuth oauth_nonce=\"{0}\", oauth_signature_method=\"{1}\", " +
-                               "oauth_timestamp=\"{2}\", oauth_consumer_key=\"{3}\", " +
-                               "oauth_signature=\"{4}\", " +
-                               "oauth_version=\"{5}\"";
-
-            var authHeader = string.Format(headerFormat,
-                                    Uri.EscapeDataString(oauth_nonce),
-                                    Uri.EscapeDataString(oauth_signature_method),
-                                    Uri.EscapeDataString(oauth_timestamp),
-                                    Uri.EscapeDataString(ConsumerKey),
-                                    Uri.EscapeDataString("TVVpeHE2Sm9GTWxqU0p2TW5nU2pmWFZ5NyZydEszYk1GajRWYXpkOWRWcDFxbXNUOUxvVm5RMTZXQ20xN2JRdkhFemhEejd0ZE5pTQ=="),
-                                    Uri.EscapeDataString(oauth_version)
-                            );
-
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create("https://api.twitter.com/oauth2/token?grant_type=client_credentials");
-            request.Headers.Add("Authorization", "TVVpeHE2Sm9GTWxqU0p2TW5nU2pmWFZ5NyZydEszYk1GajRWYXpkOWRWcDFxbXNUOUxvVm5RMTZXQ20xN2JRdkhFemhEejd0ZE5pTQ==");
-            request.Method = "POST";
-            request.ContentType = "application/x-www-form-urlencoded;charset=UTF-8";
-
-
-            WebResponse response = null;
-            try
-            {
-                response = request.GetResponse();
-                Console.WriteLine(response.ToString());
-            }
-            catch (WebException e)
-            {
-                throw new Exception(e.Status.ToString());
-            }
+            string json = await response.Content.ReadAsStringAsync();
+            Regex reg = new Regex("\"access_token\":");
+            OauthToken = reg.Split(json)[1].Replace("\"", "").Replace("}", "");
         }
 
         public void SendPostRequest(string resource_url, string post_data, string auth_header)

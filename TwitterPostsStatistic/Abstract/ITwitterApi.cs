@@ -13,7 +13,7 @@ namespace TwitterPostsStatistic.Abstract
         string OauthToken { get; set; }
         string OauthTokenSecret { get; set; }
 
-        void SendGetRequest();
+        void SendGetRequestAsync();
     }
 }
 

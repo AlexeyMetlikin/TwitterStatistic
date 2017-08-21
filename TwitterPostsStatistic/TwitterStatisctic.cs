@@ -35,15 +35,14 @@ namespace TwitterPostsStatistic
 
         public void GetUserPIN()
         {
-            string request_url = "http://api.twitter.com/oauth/authorize?oauth_token=" + API.OauthToken;
+            string request_url = "http://api.twitter.com/oauth/authorize?oauth_token=6ayhlAHbToGIy9qwmUJDeseqnbrNBdj4DXlLuYqqYrs0T";
             System.Diagnostics.Process.Start(request_url); // Передаём ссылку на страницу браузеру по умолчанию и ждём пока пользователь введёт PIN-код
             string oauth_verifier = Console.ReadLine(); // oauth_verifier — это полученный нами PIN-код.
         }
 
         public void GetToken()
         {
-            API.SendGetRequest();
+            API.SendGetRequestAsync();
         }
-
     }
 }

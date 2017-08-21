@@ -24,15 +24,17 @@ namespace TwitterPostsStatistic
                 switch (control)
                 {
                     case 1:
-                        statisctic.GetUserPIN();
+                        statisctic.GetToken();
                         break;
                     case 2:
+                        statisctic.GetUserPIN();
                         break;
                     case 3:
                         break;
                     default:
                         break;
                 }
+                int.TryParse(Console.ReadLine(), out control);
             }
         }
     }
